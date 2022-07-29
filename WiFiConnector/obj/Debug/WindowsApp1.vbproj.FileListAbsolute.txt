@@ -1,0 +1,16 @@
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\WindowsApp1.exe.config
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\WindowsApp1.exe
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\WindowsApp1.pdb
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\WindowsApp1.xml
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.vbproj.AssemblyReference.cache
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.Resources.resources
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.vbproj.GenerateResource.cache
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.vbproj.CoreCompileInputs.cache
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.exe
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.xml
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.pdb
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\System.Runtime.WindowsRuntime.dll
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\Windows.winmd
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\bin\Debug\System.Runtime.WindowsRuntime.xml
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.vbproj.CopyComplete
+C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WindowsApp1.HomePage.resources
