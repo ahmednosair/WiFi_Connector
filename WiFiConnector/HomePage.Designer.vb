@@ -129,6 +129,7 @@ Partial Class HomePage
         Me.MaximumSize = New System.Drawing.Size(510, 811)
         Me.MinimumSize = New System.Drawing.Size(510, 811)
         Me.Name = "HomePage"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "WiFi Connector"
         Me.statusPanel.ResumeLayout(False)
         Me.statusPanel.PerformLayout()

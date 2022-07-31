@@ -36,3 +36,4 @@ C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector.application
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.exe.manifest
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.application
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.vbproj.AssemblyReference.cache

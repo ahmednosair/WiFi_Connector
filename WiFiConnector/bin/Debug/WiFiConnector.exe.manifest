@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WiFiConnector.exe" size="97768">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WiFiConnector.exe" size="98280">
       <assemblyIdentity name="WiFiConnector" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>29QUOWsUbV8up7nuXnqRBwEP6j3XB7q5RQeXVEc5mIo=</dsig:DigestValue>
+        <dsig:DigestValue>p8JJVN5SBJnnqGOGCBSRoPlqcnztTDZzMKFfvb5w4PY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

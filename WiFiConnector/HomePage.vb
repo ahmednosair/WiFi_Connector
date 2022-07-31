@@ -7,8 +7,9 @@ Public Class HomePage
     Private result As IAsyncOperation(Of WiFiConnectionResult)
     Private resultNetworkView As TableLayoutPanel
     Private scanInProg As String = "NO"
+    Private lastPushWps As Button
     Private Sub HomePage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' ScanBtn.PerformClick()
+        ' ScanBtn.PerformClick() Scan once on program start
     End Sub
 
 
@@ -191,6 +192,7 @@ Public Class HomePage
         End SyncLock
 
         result = Nothing
+        resultNetworkView = Nothing
         Dim enumResult = Await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector())
             adapter = Await WiFiAdapter.FromIdAsync(enumResult.ElementAt(0).Id)
             Await adapter.ScanAsync()
@@ -211,10 +213,14 @@ Public Class HomePage
             NetworksList.AutoScroll = True
             For Each network In report.AvailableNetworks
                 Dim connectedToThis As Boolean = (Not String.IsNullOrEmpty(connectedSsid)) And network.Ssid = connectedSsid
-                Dim networkView As TableLayoutPanel = New TableLayoutPanel
-                Dim wpsConf As WiFiWpsConfigurationResult = Await adapter.GetWpsConfigurationAsync(network)
-                Dim hasWps As Boolean = wpsConf.SupportedWpsKinds.Contains(WiFiWpsKind.PushButton)
-                populateNetworkView(networkView, network, connectedToThis, hasWps)
+            Dim networkView As TableLayoutPanel = New TableLayoutPanel
+            If connectedToThis Then
+                resultNetworkView = networkView
+            End If
+
+            Dim wpsConf As WiFiWpsConfigurationResult = Await adapter.GetWpsConfigurationAsync(network)
+            Dim hasWps As Boolean = wpsConf.SupportedWpsKinds.Contains(WiFiWpsKind.PushButton)
+            populateNetworkView(networkView, network, connectedToThis, hasWps)
                 NetworksList.Controls.Add(networkView)
 
             Next
@@ -227,54 +233,92 @@ Public Class HomePage
 
     Private Sub connect_click(sender As Object, e As EventArgs)
         Dim connectBtn As Button = CType(sender, Button)
-        Dim networkState As NetworkState = CType(connectBtn.Tag, NetworkState)
 
         If connectBtn.Text = "Connect" Then
-            resultNetworkView = CType(connectBtn.Parent.Parent, TableLayoutPanel)
-            Dim credential As PasswordCredential = New PasswordCredential()
-            Dim reconnect As WiFiReconnectionKind = If(networkState.autoConnect.Checked, WiFiReconnectionKind.Automatic, WiFiReconnectionKind.Manual)
-
-            If Not String.IsNullOrEmpty(networkState.secret.Text) Then
-                credential.Password = networkState.secret.Text
+            If Not IsNothing(resultNetworkView) Then
+                disconnect(resultNetworkView.Controls().Find("connect", True)(0))
             End If
-
-            If String.IsNullOrEmpty(networkState.network.Ssid) Then
-                result = adapter.ConnectAsync(networkState.network, reconnect, credential, networkState.name.Text)
-            Else
-                result = adapter.ConnectAsync(networkState.network, reconnect, credential)
-
-            End If
-            result.Completed = New AsyncOperationCompletedHandler(Of WiFiConnectionResult)(AddressOf update_status)
+            connect(connectBtn)
         Else
-            adapter.Disconnect()
-            Dim networkView As TableLayoutPanel = New TableLayoutPanel
-            populateNetworkView(networkView, networkState.network, False, networkState.isWPS)
-            Dim oldIndex As Integer = NetworksList.Controls.GetChildIndex(connectBtn.Parent.Parent)
-            NetworksList.SuspendLayout()
-            NetworksList.Controls.Remove(connectBtn.Parent.Parent)
-            NetworksList.Controls.Add(networkView)
-            NetworksList.Controls.SetChildIndex(networkView, oldIndex)
-            NetworksList.ResumeLayout()
-            statusLbl.Text = "Not Connected."
-
+            disconnect(connectBtn)
         End If
 
 
-
-
     End Sub
-
-
     Private Sub wps_click(sender As Object, e As EventArgs)
+        If Not IsNothing(resultNetworkView) Then
+            disconnect(resultNetworkView.Controls().Find("connect", True)(0))
+        End If
         Dim connectBtn As Button = CType(sender, Button)
         Dim networkState As NetworkState = CType(connectBtn.Tag, NetworkState)
         Dim reconnect As WiFiReconnectionKind = If(networkState.autoConnect.Checked, WiFiReconnectionKind.Automatic, WiFiReconnectionKind.Manual)
         resultNetworkView = CType(connectBtn.Parent.Parent, TableLayoutPanel)
         result = adapter.ConnectAsync(networkState.network, reconnect, Nothing, "", WiFiConnectionMethod.WpsPushButton)
 
-        result.Completed = New AsyncOperationCompletedHandler(Of WiFiConnectionResult)(AddressOf update_status)
+        result.Completed = New AsyncOperationCompletedHandler(Of WiFiConnectionResult)(AddressOf update_status_after_wps)
+        connectBtn.Enabled = False
+        lastPushWps = connectBtn
     End Sub
 
+    Private Sub connect(ByRef connectBtn As Button)
+        Dim networkState As NetworkState = CType(connectBtn.Tag, NetworkState)
+
+        resultNetworkView = CType(connectBtn.Parent.Parent, TableLayoutPanel)
+
+        Dim credential As PasswordCredential = New PasswordCredential()
+        Dim reconnect As WiFiReconnectionKind = If(networkState.autoConnect.Checked, WiFiReconnectionKind.Automatic, WiFiReconnectionKind.Manual)
+
+        If Not String.IsNullOrEmpty(networkState.secret.Text) Then
+            credential.Password = networkState.secret.Text
+        End If
+
+        If String.IsNullOrEmpty(networkState.network.Ssid) Then
+            result = adapter.ConnectAsync(networkState.network, reconnect, credential, networkState.name.Text)
+        Else
+            result = adapter.ConnectAsync(networkState.network, reconnect, credential)
+
+        End If
+        result.Completed = New AsyncOperationCompletedHandler(Of WiFiConnectionResult)(AddressOf update_status)
+
+    End Sub
+
+    Private Sub disconnect(ByRef connectBtn As Button)
+        Dim networkState As NetworkState = CType(connectBtn.Tag, NetworkState)
+        adapter.Disconnect()
+        Dim networkView As TableLayoutPanel = New TableLayoutPanel
+        populateNetworkView(networkView, networkState.network, False, networkState.isWPS)
+        Dim oldIndex As Integer = NetworksList.Controls.GetChildIndex(connectBtn.Parent.Parent)
+        NetworksList.SuspendLayout()
+        NetworksList.Controls.Remove(connectBtn.Parent.Parent)
+        NetworksList.Controls.Add(networkView)
+        NetworksList.Controls.SetChildIndex(networkView, oldIndex)
+        NetworksList.ResumeLayout()
+        statusLbl.Text = "Not Connected."
+        result = Nothing
+        resultNetworkView = Nothing
+    End Sub
+
+
+    Private Sub update_status_after_wps()
+
+        '        you use the BeginInvoke method
+        '7:08 PM
+        'which gives the control
+        '7:09 PM
+        'a subroutine
+        '7:09 PM
+        'to be executed by the control thread itself
+        '7:09 PM
+        'Not the currently running thread
+
+        update_status()
+        If Not IsNothing(lastPushWps) Then
+            lastPushWps.BeginInvoke(Sub()
+                                        lastPushWps.Enabled = True
+                                    End Sub)
+        End If
+
+    End Sub
 
     Private Sub update_status()
 
@@ -292,7 +336,6 @@ Public Class HomePage
                                           connectBtn.Text = "Disconnect"
                                           If (String.IsNullOrEmpty(networkState.network.Ssid)) Then
                                               resultNetworkView.Controls.Find("ssidVal", True)(0).Text = networkState.name.Text
-
                                           End If
                                           resultNetworkView.ResumeLayout()
                                       End Sub)
@@ -324,6 +367,7 @@ Public Class HomePage
 
         End Select
     End Sub
+
 
 End Class
 
