@@ -14,6 +14,9 @@ C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WiFiConnector.vbp
 C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WiFiConnector.exe
 C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WiFiConnector.xml
 C:\Users\Nosair\source\repos\WindowsApp1\WindowsApp1\obj\Debug\WiFiConnector.pdb
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\eye.png
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\view.png
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\wifi.ico
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector.exe.config
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector.exe
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector.pdb
@@ -21,7 +24,6 @@ C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\System.Runtime.WindowsRuntime.dll
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\Windows.winmd
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\System.Runtime.WindowsRuntime.xml
-C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.vbproj.AssemblyReference.cache
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.HomePage.resources
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.Resources.resources
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.vbproj.GenerateResource.cache
@@ -30,3 +32,7 @@ C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.exe
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.xml
 C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.pdb
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector.exe.manifest
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\bin\Debug\WiFiConnector.application
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.exe.manifest
+C:\Users\Nosair\source\repos\WiFiConnector\WiFiConnector\obj\Debug\WiFiConnector.application
